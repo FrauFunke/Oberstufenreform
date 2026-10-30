@@ -82,8 +82,15 @@ p{margin:.4rem 0 .9rem}
 /* Hero */
 .hero{position:relative;overflow:hidden;padding:3rem 0 2rem;background:var(--surface);border-bottom:1px solid var(--line)}
 .hero .wrap{position:relative;z-index:1}
-.deco{position:absolute;top:-40px;right:-60px;width:min(420px,60vw);height:auto;pointer-events:none;opacity:.9}
-.deco polygon{fill:none;stroke-width:1.2}
+/* Dekor wie Briefbogen/Arbeitsblatt: links an der Seite, unten rechts in der Ecke */
+:root{--deco-a:#7b93bd;--deco-b:#46669a;--deco-g:#5b8c47}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--deco-a:#5d7299;--deco-b:#6f8fc4;--deco-g:#6fa85a}}
+:root[data-theme="dark"]{--deco-a:#5d7299;--deco-b:#6f8fc4;--deco-g:#6fa85a}
+.deco{position:fixed;z-index:-1;pointer-events:none;height:auto}
+.deco polygon{fill:none;stroke-width:1.3;vector-effect:non-scaling-stroke}
+.deco-left{left:0;top:50%;transform:translateY(-50%);width:clamp(60px,9vw,140px)}
+.deco-corner{right:0;bottom:0;width:clamp(180px,26vw,380px)}
+@media (max-width:620px){.deco{opacity:.6}}
 .status{display:inline-block;background:var(--amber-soft);color:var(--amber);font-weight:700;font-size:.9rem;padding:.3rem .7rem;border-radius:999px;margin-bottom:1.1rem}
 .exam{margin-top:2.2rem}
 .exam-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1rem}
@@ -189,6 +196,15 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
 </style>
 </head>
 <body>
+<svg class="deco deco-left" viewBox="0 0 140 440" aria-hidden="true">
+  <polygon points="-30,5 52.1,44.5 72.4,133.4 15.6,204.6 -75.6,204.6 -132.4,133.4 -112.1,44.5" stroke="var(--deco-a)"/>
+  <polygon points="-15,140 102.3,196.5 131.2,323.4 50.1,425.1 -80.1,425.1 -161.2,323.4 -132.3,196.5" stroke="var(--deco-g)"/>
+</svg>
+<svg class="deco deco-corner" viewBox="0 0 460 380" aria-hidden="true">
+  <polygon points="451,4 537,45.4 558.2,138.5 498.7,213.1 403.3,213.1 343.8,138.5 365,45.4" stroke="var(--deco-a)"/>
+  <polygon points="361,105 474.4,159.6 502.4,282.3 423.9,380.6 298.1,380.6 219.6,282.3 247.6,159.6" stroke="var(--deco-b)"/>
+  <polygon points="166,194 275.5,246.7 302.5,365.2 226.7,460.1 105.3,460.1 29.5,365.2 56.5,246.7" stroke="var(--deco-g)"/>
+</svg>
 
 <nav class="nav" aria-label="Abschnitte">
   <div class="nav-inner">
@@ -200,17 +216,12 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
     <a class="l" href="#fhr">Fachhochschulreife</a>
     <a class="l" href="#bleibt">Was bleibt</a>
     <a class="l" href="#beratung">Beratung</a>
-    <a class="l" href="#offen">Offene Punkte</a>
+    <a class="l" href="#offen">Noch zu klären</a>
     <a class="l" href="#zeitplan">Zeitplan</a>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <svg class="deco" viewBox="0 0 300 260" aria-hidden="true">
-    <polygon points="210,10 252.4,30.4 262.9,76.3 233.5,113.1 186.5,113.1 157.1,76.3 167.6,30.4" stroke="var(--green-bright)"/>
-    <polygon points="140,60 199.5,88.7 214.2,153 173,204.6 107,204.6 65.8,153 80.5,88.7" stroke="var(--teal)"/>
-    <polygon points="250,120 278.1,133.5 285,163.9 265.6,188.3 234.4,188.3 215,163.9 221.9,133.5" stroke="var(--blue)"/>
-  </svg>
   <div class="wrap">
     <span class="status">Entwurfsstand · Anhörungsfassung vom 20.08.2026</span>
     <h1>Oberstufenreform: Was sich im Beruflichen Gymnasium ändert</h1>
@@ -234,7 +245,7 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
 
   <div class="col">
     <div class="callout" role="note">
-      <strong>Bitte zuerst lesen.</strong> Grundlage ist der Entwurf der VO-SEK II-Abitur mit Ergänzenden Bestimmungen und Begründung (Anhörungsfassung 20.08.2026). Die zugehörige Änderung der BbS-VO, in der Einführungs- und Qualifikationsphase des BG geregelt sind, liegt noch nicht vor. Diese Seite ist eine Orientierungshilfe, keine Rechtsgrundlage. Wo wir nur Erwartungen formulieren können, ist das gekennzeichnet.
+      <strong>Bitte zuerst lesen.</strong> Grundlage ist der Entwurf der VO-SEK II-Abitur mit Ergänzenden Bestimmungen und Begründung (Anhörungsfassung 20.08.2026). Die zugehörige Änderung der BbS-VO, in der Einführungs- und Qualifikationsphase des BG geregelt sind, liegt noch nicht vor. Diese Seite ist eine Orientierungshilfe, keine Rechtsgrundlage.
     </div>
   </div>
 
@@ -252,7 +263,7 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
           <tr><td>Drei Leistungskurse sind frei wählbar.</td><td class="part">eingeschränkt</td><td>P1 steht mit der Fachrichtung fest. Gewählt werden zwei weitere Leistungskurse (P2, P3) und zwei Grundkurse (P4, P5).</td></tr>
           <tr><td>Abitur mit drei schriftlichen und zwei mündlichen Prüfungen</td><td class="yes">gilt</td><td>P1 bis P3 schriftlich, P4 und P5 mündlich.</td></tr>
           <tr><td>Weniger Klausuren in der Qualifikationsphase</td><td class="yes">gilt</td><td>Laut Begründung zur Verordnung; Einzelheiten unten.</td></tr>
-          <tr><td>Kombinierter Leistungsnachweis statt Klausur</td><td class="part">eingeschränkt</td><td>Nur in P4 und P5, dort kann eine Klausur ersetzt werden.</td></tr>
+          <tr><td>Kombinierter Leistungsnachweis statt Klausur</td><td class="part">eingeschränkt</td><td>In Einführungs- und Qualifikationsphase können je zwei Klausuren ersetzt werden, in der Qualifikationsphase in den mündlichen Prüfungsfächern P4 und P5. Über die Einführung entscheidet die Schule.</td></tr>
           <tr><td>Projektfach statt Seminarfach</td><td class="no">gilt nicht</td><td>Regelung der gymnasialen Oberstufe.</td></tr>
           <tr><td>Neue Stundentafel in Jg. 11 mit Beruflicher Orientierung und Vertiefungsunterricht</td><td class="no">gilt nicht</td><td>Die Einführungsphase des BG bleibt in der BbS-VO geregelt.</td></tr>
         </tbody>
@@ -276,7 +287,7 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
   <!-- Abiturprüfung -->
   <section id="pruefung" class="col">
     <h2>Die Abiturprüfung: hier liegt die eigentliche Umstellung</h2>
-    <p>Für das Kollegium ist der mündliche P4 die wichtigste Änderung. Jede Schülerin und jeder Schüler wird künftig zweimal mündlich geprüft. Das verdoppelt im Abiturjahrgang die Zahl der mündlichen Prüfungen und betrifft Prüfungsplanung, Fachprüfungsausschüsse und Raumorganisation.</p>
+    <p>Für das Kollegium ist die wichtigste Änderung der Wechsel von der schriftlichen zur mündlichen Form im vierten Prüfungsfach (P4). Jede Schülerin und jeder Schüler wird künftig zweimal mündlich geprüft. Der Unterricht muss also nun einerseits auf eine mündliche Prüfung ausgerichtet werden. Andererseits verdoppelt dies im Abiturjahrgang die Zahl der mündlichen Prüfungen und betrifft Prüfungsplanung, Fachprüfungsausschüsse und Raumorganisation.</p>
     <ul class="changes">
       <li><h3>P4 wird mündlich</h3><span class="ref">§ 39 Abs. 4</span>
         <p>Im vierten und fünften Prüfungsfach gibt es nur noch mündliche Prüfungen auf grundlegendem Niveau. Bisher wurde P4 im BG schriftlich geprüft.</p></li>
@@ -291,8 +302,8 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
         <p>Die mündliche Prüfung in P4 liegt damit vor den schriftlichen Prüfungen, direkt nach dem Ende des Unterrichts. Die genauen Termine regelt künftig die jährliche Durchführungsbestimmung (§ 46).</p></li>
       <li><h3>Kolloquiumsprüfung in P5</h3><span class="ref">§ 48</span>
         <p>Auf Verlangen des Prüflings ist in P5 eine Kolloquiumsprüfung möglich. Sie löst die bisherige Präsentationsprüfung ab.</p></li>
-      <li><h3>Besondere Lernleistung neu gefasst</h3><span class="ref">§ 49</span>
-        <p>Genehmigungspflichtiger Antrag, Kolloquium etwa gleich gewichtet, neue Formen wie Projekt- oder Praktikumsdokumentation.</p></li>
+      <li><h3>Besondere Lernleistung in P4</h3><span class="ref">§ 49</span>
+        <p>Die Besondere Lernleistung bleibt als Ersatz für die Prüfung in P4 erhalten. Neu sind ein genehmigungspflichtiger Antrag, ein etwa gleich gewichtetes Kolloquium und weitere Formen wie eine Projekt- oder Praktikumsdokumentation.</p></li>
       <li><h3>Schlankere Fachprüfungsausschüsse</h3><span class="ref">§ 44</span>
         <p>Erst- und Zweitkorrektur der schriftlichen Arbeiten durch zwei Lehrkräfte der Schule; die Anforderungen an die Lehrbefähigung sind gelockert.</p></li>
       <li><h3>Zusätzliche mündliche Prüfungen in P1 bis P3</h3><span class="ref">§§ 51–52</span>
@@ -310,8 +321,8 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
       <table>
         <thead><tr><th scope="col">Kurs</th><th scope="col">Klausuren künftig</th><th scope="col">Hinweis</th></tr></thead>
         <tbody>
-          <tr><td>P1 bis P3</td><td><span class="num">4</span></td><td><span class="was">bisher 5</span></td></tr>
-          <tr><td>P4 und P5</td><td><span class="num">3</span></td><td><span class="was">bisher 5</span> · eine Klausur kann durch einen Kombinierten Leistungsnachweis ersetzt werden</td></tr>
+          <tr><td>P1 bis P3</td><td><span class="num">4</span></td><td><span class="was">bisher 5</span> · Zeitraum: in der gesamten Qualifikationsphase</td></tr>
+          <tr><td>P4 und P5</td><td><span class="num">3</span></td><td><span class="was">bisher 5</span> · Zeitraum: innerhalb der ersten drei Schulhalbjahre · eine Klausur kann durch einen Kombinierten Leistungsnachweis ersetzt werden</td></tr>
           <tr><td>Deutsch, Mathematik, Englisch, wenn nicht Prüfungsfach</td><td><span class="num">3</span></td><td>je eine in den ersten drei Halbjahren</td></tr>
           <tr><td>Übrige Kurse</td><td><span class="num">0</span></td><td>Bewertung über die Leistungen im Unterricht</td></tr>
         </tbody>
@@ -320,8 +331,9 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
     <div class="two">
       <div class="panel">
         <h3>Kombinierter Leistungsnachweis</h3>
+        <p>Laut Begründung zur VO-GO können in der Einführungs- und in der Qualifikationsphase jeweils zwei Klausuren durch einen Kombinierten Leistungsnachweis ersetzt werden. In der Qualifikationsphase betrifft das die mündlichen Prüfungsfächer P4 und P5, denn der Kombinierte Leistungsnachweis soll gezielt auf die mündliche Abiturprüfung vorbereiten (EB-VO-SEK II-Abitur). Ob er eingeführt wird, entscheidet die Schule, also die Fachkonferenzen.</p>
         <p>Im allgemeinbildenden Gymnasium besteht er aus zwei aufeinander aufbauenden Teilen: einem schriftlichen oder praktischen Teil (höchstens 30 % der Bewertung) und einem Kolloquium von 10 bis 20 Minuten in der Schule. Er entspricht in Aufwand und Anspruch einer Klausur und ersetzt sie.</p>
-        <p class="small">Für das BG erwarten wir eine entsprechende Regelung in der BbS-VO.<span class="state exp">erwartet</span></p>
+        <p class="small">Ob die Regelung zur Einführungsphase auch für das BG gilt, hängt von der Neufassung der BbS-VO ab. Wie die Teile im BG gewichtet werden, konkretisieren Gesamtkonferenz und Fachteams (siehe <a href="#offen">Noch zu klären</a>).</p>
       </div>
       <div class="panel">
         <h3>Warum das zusammenpasst</h3>
@@ -387,18 +399,25 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
 
   <!-- Offene Punkte -->
   <section id="offen" class="col">
-    <h2>Offene Punkte</h2>
-    <p>Bis die geänderte BbS-VO vorliegt, bleiben einige Fragen offen. Unsere derzeitige Einschätzung:</p>
+    <h2>Noch zu klären</h2>
+    <p>Ein Punkt muss an unserer Schule noch gemeinsam geregelt werden:</p>
     <ul class="changes">
-      <li><h3>Begriffe Leistungskurs und Grundkurs<span class="state exp">erwartet</span></h3><span class="ref"></span>
-        <p>Aus Gründen der Vergleichbarkeit gehen wir davon aus, dass die Bezeichnungen auch im BG übernommen werden: P1 bis P3 als Leistungskurse, P4 und P5 als Grundkurse.</p></li>
-      <li><h3>Festlegung von P2 und P3<span class="state exp">erwartet</span></h3><span class="ref">Nr. 45.2 c EB</span>
-        <p>Die EB verweisen auf eine Festlegung erst bei der Meldung zur Prüfung. Wir erwarten, dass P2 und P3 wie bisher vorab gewählt werden und bei der Meldung nur untereinander getauscht werden können. Ein anderer Tausch ist nicht denkbar, weil nur P1 bis P3 fünfstündig unterrichtet werden.</p></li>
-      <li><h3>Kombinierter Leistungsnachweis im BG<span class="state open">offen</span></h3><span class="ref"></span>
-        <p>Wer legt im BG die Grundsätze fest, wie werden die Teile gewichtet, wie wird das Kolloquium dokumentiert? Das hängt von der BbS-VO und den EB-BbS ab.</p></li>
-      <li><h3>Organisation der mündlichen Prüfungen<span class="state open">offen</span></h3><span class="ref"></span>
-        <p>Zwei mündliche Prüfungen pro Prüfling erfordern ein neues Zeit- und Raumkonzept für den Abiturjahrgang 2030.</p></li>
+      <li><h3>Einführung und Gewichtung des Kombinierten Leistungsnachweises<span class="state open">offen</span></h3><span class="ref">§ 14</span>
+        <p>Ob der Kombinierte Leistungsnachweis eingeführt wird, entscheiden die Fachteams. Wie seine beiden Teile gewichtet werden, müssen Gesamtkonferenz und Fachteams für das BG konkretisieren. Es bietet sich an, die Regelungen für die allgemeinbildenden Gymnasien zu übernehmen und für das BG anzupassen.</p></li>
     </ul>
+
+    <h3 style="margin-top:2.2rem;font-size:1.3rem;color:var(--blue)">Was zudem neu ist</h3>
+    <div class="panel" style="margin-top:.8rem">
+      <h3>Notenschutz bei Rechtschreibstörung</h3>
+      <p>Bei einer Rechtschreibstörung darf auf die Bewertung der Rechtschreibleistung verzichtet werden (Notenschutz nach § 58 a Abs. 2 NSchG), wenn alle drei Voraussetzungen erfüllt sind:</p>
+      <ol style="margin:.3rem 0 .9rem;padding-left:1.3rem">
+        <li>Die Leistungen können aufgrund der Rechtschreibstörung auch mit Nachteilsausgleich nicht erbracht werden.</li>
+        <li>Ein fachärztliches Gutachten über Art und Umfang der Beeinträchtigung liegt vor.</li>
+        <li>Es liegt ein schriftlicher Antrag vor: von der volljährigen Schülerin oder dem volljährigen Schüler selbst, bei Minderjährigen von den Erziehungsberechtigten.</li>
+      </ol>
+      <p>Ein in der Qualifikationsphase gewährter Notenschutz muss für die Abiturprüfung erneut beantragt werden. Ein neues fachärztliches Gutachten ist dafür nicht nötig.</p>
+      <p class="small">Grundlage: Verordnung zur Einführung und Änderung schulrechtlicher Verordnungen zum Nachteilsausgleich und Notenschutz, Artikel 2 (§ 7 a VO-GO) (Anhörfassung)</p>
+    </div>
   </section>
 
   <!-- Zeitplan -->
@@ -445,7 +464,7 @@ footer ul{padding-left:1.1rem;margin:.3rem 0 1rem}
   var pts = "50,2 87.53,20.07 96.8,60.68 70.83,93.25 29.17,93.25 3.2,60.68 12.47,20.07";
   var notes = {
     alt: "Bisher: vier schriftliche Prüfungen (P1 bis P4) und eine mündliche Prüfung (P5).",
-    neu: "Ab Abitur 2030: drei schriftliche Prüfungen in den Leistungskursen, zwei mündliche Prüfungen in den Grundkursen. Die Bezeichnungen Leistungskurs und Grundkurs erwarten wir auch für das BG."
+    neu: "Ab Abitur 2030: drei schriftliche Prüfungen in den Leistungskursen, zwei mündliche Prüfungen in den Grundkursen."
   };
   var box = document.getElementById("hepts");
   var note = document.getElementById("exam-note");
